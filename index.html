@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illuminati Sollari</title> <footer>
+    <p class="signature">✦ Code & Vision by Mortadela</p>
+</footer>
+    <style>
+        :root {
+            --bg-deep: #0A0A0A;
+            --bg-card: rgba(18, 18, 18, 0.78);
+            --gold-primary: #FFD700;
+            --gold-secondary: #DAA520;
+            --gold-glow: rgba(255, 215, 0, 0.25);
+            --text-main: #E0E0E0;
+            --text-muted: #9E9E9E;
+            --border-gold: rgba(255, 215, 0, 0.3);
+            --error-color: #FF4D4D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(255, 215, 0, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(218, 165, 32, 0.03) 0%, transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        /* Header & Pyramid */
+        header {
+            text-align: center;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pyramid-symbol {
+            width: 70px;
+            height: 60px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 0 10px var(--gold-glow));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .pyramid-symbol svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--gold-primary);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--gold-primary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px var(--gold-glow);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Glassmorphism Sections */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Section 1: Form Inputs */
+        .sales-form h2 {
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-prefix {
+            position: absolute;
+            left: 15px;
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--gold-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input.has-prefix {
+            padding-left: 35px;
+        }
+
+        input.has-suffix {
+            padding-right: 45px;
+        }
+
+        input:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        /* Buttons Container */
+        .actions-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: #0A0A0A;
+            border: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #ffea6c, var(--gold-primary));
+        }
+
+        .btn-clear {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-gold);
+        }
+
+        .btn-clear:hover {
+            background: rgba(255, 215, 0, 0.05);
+            color: var(--gold-primary);
+            border-color: var(--gold-primary);
+        }
+
+        /* Error Banner */
+        .error-banner {
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Section 2: Results Grid */
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .results-section h2 {
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 8px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeSlideIn 0.5s ease forwards;
+        }
+
+        .result-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .result-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .result-value {
+            font-size: 1.4rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        .result-detail {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+
+        .result-detail:last-child {
+            border-bottom: none;
+        }
+
+        .result-detail span:last-child {
+            color: var(--gold-secondary);
+            font-weight: 600;
+        }
+
+        /* Executive Summary Card (Full Width) */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(30, 25, 5, 0.7));
+            border: 2px solid var(--gold-primary);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 0 30px var(--gold-glow);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeSlideIn 0.5s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .executive-summary h3 {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .summary-item::before {
+            content: "✓";
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        .summary-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .summary-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .summary-val {
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            width: 100%;
+        }
+
+        .signature {
+            font-size: 0.85rem;
+            color: var(--gold-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(218, 165, 32, 0.3);
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .glass-panel {
+                padding: 15px;
+            }
+            .actions-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="pyramid-symbol" aria-label="Símbolo da Pirâmide Illuminati">
+                <svg viewBox="0 0 100 100">
+                    <polygon points="50,5 95,90 5,90" fill="none" stroke="var(--gold-primary)" stroke-width="3"/>
+                    <circle cx="50" cy="55" r="14" fill="none" stroke="var(--gold-primary)" stroke-width="2"/>
+                    <circle cx="50" cy="55" r="4" fill="var(--gold-primary)"/>
+                    <polyline points="30,35 50,20 70,35" fill="none" stroke="var(--gold-primary)" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div>
+                <h1>ILLUMINATI Sollari </h1>
+                <p class="subtitle">Algoritmo Avançado de Vendas, Lucros e Logística</p>
+            </div>
+        </header>
+
+        <!-- SEÇÃO 1 - DADOS DE VENDA -->
+        <section class="glass-panel sales-form">
+            <h2>Parâmetros da Operação</h2>
+            
+            <div id="errorBanner" class="error-banner"></div>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="totalItens">Total de Drogas</label>
+                    <input type="number" id="totalItens" value="6000" min="0" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label for="valorUnitario">Valor Unitário</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="valorUnitario" value="4000" min="0" step="0.01" class="has-prefix">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="pesoUnitario">Peso Droga</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="pesoUnitario" value="0.5" min="0.001" step="0.1" class="has-suffix">
+                        <span class="input-suffix">KG</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="capacidadeCaminhao">Tamanho do Caminhão (Capacidade)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="capacidadeCaminhao" value="1000" min="1" step="1" class="has-suffix">
+                        <span class="input-suffix">KG</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions-container">
+                <button type="button" class="btn-calculate" id="btnCalculate">Calcular</button>
+                <button type="button" class="btn-clear" id="btnClear">Limpar</button>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2 - RESULTADOS -->
+        <section class="results-section">
+            <h2>Relatório Confidencial</h2>
+            
+            <div class="results-grid">
+                <!-- CARD 1 -->
+                <div class="result-card" style="animation-delay: 0.05s;">
+                    <h3>Total de Drogas</h3>
+                    <div class="result-value" id="resTotalItens">0</div>
+                    <div class="result-detail">
+                        <span>Divisão por 5</span>
+                        <span id="resDiv5">0</span>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="result-card" style="animation-delay: 0.1s;">
+                    <h3>Faturamento / Lucro Total</h3>
+                    <div class="result-value" id="resFaturamento">$0.00</div>
+                    <div class="result-detail">
+                        <span>Valor Consolidado</span>
+                        <span id="resFatDetail">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="result-card" style="animation-delay: 0.15s;">
+                    <h3>Divisão de Lucro (70% / 30%)</h3>
+                    <div class="result-value" id="resLucro70">$0.00</div>
+                    <div class="result-detail">
+                        <span>Fatia 70%</span>
+                        <span id="resLucro70Detail">$0.00</span>
+                    </div>
+                    <div class="result-detail">
+                        <span>Fatia 30%</span>
+                        <span id="resLucro30Detail">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="result-card" style="animation-delay: 0.2s;">
+                    <h3>Peso Total da Carga</h3>
+                    <div class="result-value" id="resPesoTotal">0 KG</div>
+                    <div class="result-detail">
+                        <span>Massa Global</span>
+                        <span id="resPesoTotalDetail">0 KG</span>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="result-card" style="animation-delay: 0.25s;">
+                    <h3>Capacidade de Transporte</h3>
+                    <div class="result-value" id="resMaxCaminhao">0 Itens</div>
+                    <div class="result-detail">
+                        <span>Limite por Veículo</span>
+                        <span id="resPesoUtilizado">0 KG</span>
+                    </div>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="result-card" style="animation-delay: 0.3s;">
+                    <h3>Rotas (apenas em farm)</h3>
+                    <div class="result-value" id="resViagens">0 viagens</div>
+                    <div class="result-detail">
+                        <span>Frota Alocada</span>
+                        <span id="resViagensDetail">0 veículos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESUMO EXECUTIVO -->
+            <div class="executive-summary">
+                <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Resumo Executivo da Operação
+                </h3>
+                <div class="summary-list">
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Faturamento Total</span>
+                            <span class="summary-val" id="sumFat">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Lucro 70%</span>
+                            <span class="summary-val" id="sumLucro70">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Lucro 30%</span>
+                            <span class="summary-val" id="sumLucro30">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Peso Total</span>
+                            <span class="summary-val" id="sumPeso">0 KG</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Drogas por Caminhão</span>
+                            <span class="summary-val" id="sumItensCaminhao">0</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-content">
+                            <span class="summary-label">Quantidade de Viagens</span>
+                            <span class="summary-val" id="sumViagens">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer>
+            <p class="signature">Desenvolvido por Mortadela</p>
+        </footer>
+    </div>
+
+    <script>
+        // Formatter para moeda USD (Intl.NumberFormat)
+        const currencyFormatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        // Formatter para números comuns
+        const numberFormatter = new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: 2
+        });
+
+        // Elementos do DOM
+        const inputTotalItens = document.getElementById('totalItens');
+        const inputValorUnitario = document.getElementById('valorUnitario');
+        const inputPesoUnitario = document.getElementById('pesoUnitario');
+        const inputCapacidadeCaminhao = document.getElementById('capacidadeCaminhao');
+        
+        const btnCalculate = document.getElementById('btnCalculate');
+        const btnClear = document.getElementById('btnClear');
+        const errorBanner = document.getElementById('errorBanner');
+
+        // Campos de Resultados
+        const resTotalItens = document.getElementById('resTotalItens');
+        const resDiv5 = document.getElementById('resDiv5');
+        const resFaturamento = document.getElementById('resFaturamento');
+        const resFatDetail = document.getElementById('resFatDetail');
+        const resLucro70 = document.getElementById('resLucro70');
+        const resLucro70Detail = document.getElementById('resLucro70Detail');
+        const resLucro30Detail = document.getElementById('resLucro30Detail');
+        const resPesoTotal = document.getElementById('resPesoTotal');
+        const resPesoTotalDetail = document.getElementById('resPesoTotalDetail');
+        const resMaxCaminhao = document.getElementById('resMaxCaminhao');
+        const resPesoUtilizado = document.getElementById('resPesoUtilizado');
+        const resViagens = document.getElementById('resViagens');
+        const resViagensDetail = document.getElementById('resViagensDetail');
+
+        // Campos do Resumo Executivo
+        const sumFat = document.getElementById('sumFat');
+        const sumLucro70 = document.getElementById('sumLucro70');
+        const sumLucro30 = document.getElementById('sumLucro30');
+        const sumPeso = document.getElementById('sumPeso');
+        const sumItensCaminhao = document.getElementById('sumItensCaminhao');
+        const sumViagens = document.getElementById('sumViagens');
+
+        function showError(message) {
+            errorBanner.textContent = message;
+            errorBanner.style.display = 'block';
+        }
+
+        function hideError() {
+            errorBanner.textContent = '';
+            errorBanner.style.display = 'none';
+        }
+
+        function calcular() {
+            hideError();
+
+            const totalItens = parseFloat(inputTotalItens.value);
+            const valorUnitario = parseFloat(inputValorUnitario.value);
+            const pesoUnitario = parseFloat(inputPesoUnitario.value);
+            const capacidadeCaminhao = parseFloat(inputCapacidadeCaminhao.value);
+
+            // Validações de segurança
+            if (isNaN(totalItens) || isNaN(valorUnitario) || isNaN(pesoUnitario) || isNaN(capacidadeCaminhao)) {
+                showError("Erro: Todos os campos devem ser preenchidos com números válidos.");
+                return;
+            }
+
+            if (totalItens < 0 || valorUnitario < 0 || pesoUnitario < 0 || capacidadeCaminhao < 0) {
+                showError("Erro: Não são permitidos valores negativos.");
+                return;
+            }
+
+            if (pesoUnitario === 0 || capacidadeCaminhao === 0) {
+                showError("Erro: O peso do item e o tamanho do caminhão não podem ser zero.");
+                return;
+            }
+
+            // Cálculos
+            const itensDiv5 = totalItens / 5;
+            const faturamentoBruto = totalItens * valorUnitario;
+            const lucro70 = faturamentoBruto * 0.70;
+            const lucro30 = faturamentoBruto * 0.30;
+            const pesoTotalCarga = totalItens * pesoUnitario;
+            const maxItensCaminhao = capacidadeCaminhao / pesoUnitario;
+            const viagensNecessarias = Math.ceil(pesoTotalCarga / capacidadeCaminhao);
+
+            if (!isFinite(faturamentoBruto) || !isFinite(viagensNecessarias)) {
+                showError("Erro: O cálculo gerou um resultado infinito.");
+                return;
+            }
+
+            // Atualização visual dos cards
+            resTotalItens.textContent = numberFormatter.format(totalItens);
+            resDiv5.textContent = numberFormatter.format(itensDiv5);
+
+            const formattedFat = currencyFormatter.format(faturamentoBruto);
+            resFaturamento.textContent = formattedFat;
+            resFatDetail.textContent = formattedFat;
+
+            const formattedLucro70 = currencyFormatter.format(lucro70);
+            const formattedLucro30 = currencyFormatter.format(lucro30);
+            resLucro70.textContent = formattedLucro70;
+            resLucro70Detail.textContent = formattedLucro70;
+            resLucro30Detail.textContent = formattedLucro30;
+
+            const formattedPesoTotal = `${numberFormatter.format(pesoTotalCarga)} KG`;
+            resPesoTotal.textContent = formattedPesoTotal;
+            resPesoTotalDetail.textContent = formattedPesoTotal;
+
+            resMaxCaminhao.textContent = `${numberFormatter.format(Math.floor(maxItensCaminhao))} Itens`;
+            resPesoUtilizado.textContent = `${numberFormatter.format(pesoTotalCarga > capacidadeCaminhao ? capacidadeCaminhao : pesoTotalCarga)} KG`;
+
+            const textViagens = `${viagensNecessarias} ${viagensNecessarias === 1 ? 'viagem' : 'viagens'}`;
+            resViagens.textContent = textViagens;
+            resViagensDetail.textContent = `${viagensNecessarias} veículo(s)`;
+
+            // Atualização do Resumo Executivo
+            sumFat.textContent = formattedFat;
+            sumLucro70.textContent = formattedLucro70;
+            sumLucro30.textContent = formattedLucro30;
+            sumPeso.textContent = formattedPesoTotal;
+            sumItensCaminhao.textContent = numberFormatter.format(Math.floor(maxItensCaminhao));
+            sumViagens.textContent = viagensNecessarias;
+        }
+
+        function limpar() {
+            inputTotalItens.value = '';
+            inputValorUnitario.value = '';
+            inputPesoUnitario.value = '';
+            inputCapacidadeCaminhao.value = '';
+            hideError();
+
+            resTotalItens.textContent = '0';
+            resDiv5.textContent = '0';
+            resFaturamento.textContent = '$0.00';
+            resFatDetail.textContent = '$0.00';
+            resLucro70.textContent = '$0.00';
+            resLucro70Detail.textContent = '$0.00';
+            resLucro30Detail.textContent = '$0.00';
+            resPesoTotal.textContent = '0 KG';
+            resPesoTotalDetail.textContent = '0 KG';
+            resMaxCaminhao.textContent = '0 Itens';
+            resPesoUtilizado.textContent = '0 KG';
+            resViagens.textContent = '0 viagens';
+            resViagensDetail.textContent = '0 veículos';
+
+            sumFat.textContent = '$0.00';
+            sumLucro70.textContent = '$0.00';
+            sumLucro30.textContent = '$0.00';
+            sumPeso.textContent = '0 KG';
+            sumItensCaminhao.textContent = '0';
+            sumViagens.textContent = '0';
+        }
+
+        btnCalculate.addEventListener('click', calcular);
+        btnClear.addEventListener('click', limpar);
+        window.addEventListener('DOMContentLoaded', calcular);
+    </script>
+</body>
+</html>
